@@ -46,11 +46,11 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
      */
     fun updateItem(
         itemId: Int,
-        itemName: String,
+        itemTitle: String,
         itemDate: String,
         itemContent: String
     ) {
-        val updatedItem = getUpdatedItemEntry(itemId, itemName, itemDate, itemContent)
+        val updatedItem = getUpdatedItemEntry(itemId, itemTitle, itemDate, itemContent)
         updateItem(updatedItem)
     }
 
@@ -85,8 +85,8 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
     /**
      * Inserts the new Item into database.
      */
-    fun addNewItem(itemName: String, itemDate: String, itemContent: String) {
-        val newItem = getNewItemEntry(itemName, itemDate, itemContent)
+    fun addNewItem(itemTitle: String, itemDate: String, itemContent: String) {
+        val newItem = getNewItemEntry(itemTitle, itemDate, itemContent)
         insertItem(newItem)
     }
 
@@ -118,8 +118,8 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
     /**
      * Returns true if the EditTexts are not empty
      */
-    fun isEntryValid(itemName: String, itemDate: String, itemContent: String): Boolean {
-        if (itemName.isBlank() || itemDate.isBlank() || itemContent.isBlank()) {
+    fun isEntryValid(itemTitle: String, itemDate: String, itemContent: String): Boolean {
+        if (itemTitle.isBlank() || itemDate.isBlank() || itemContent.isBlank()) {
             return false
         }
         return true
@@ -143,13 +143,13 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
      */
     private fun getUpdatedItemEntry(
         itemId: Int,
-        itemName: String,
+        itemTitle: String,
         itemDate: String,
         itemContent: String
     ): Item {
         return Item(
             id = itemId,
-            itemName = itemName,
+            itemTitle = itemTitle,
             itemDate = itemDate,
 //            quantityInStock = itemContent.toInt()
         )
