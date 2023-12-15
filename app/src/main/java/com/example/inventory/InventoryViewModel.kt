@@ -48,9 +48,9 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
         itemId: Int,
         itemName: String,
         itemDate: String,
-        itemCount: String
+        itemContent: String
     ) {
-        val updatedItem = getUpdatedItemEntry(itemId, itemName, itemDate, itemCount)
+        val updatedItem = getUpdatedItemEntry(itemId, itemName, itemDate, itemContent)
         updateItem(updatedItem)
     }
 
@@ -77,7 +77,7 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
 
     fun modify(item: Item) {
             // Decrease the quantity by 1
-            val newItem = item.copy( quantityInStock = item.quantityInStock - 1)
+            val newItem = item.copy( title =  item.title , date = item.date, content = item.content)
             
             updateItem(newItem)
     }
@@ -85,8 +85,8 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
     /**
      * Inserts the new Item into database.
      */
-    fun addNewItem(itemName: String, itemDate: String, itemCount: String) {
-        val newItem = getNewItemEntry(itemName, itemDate, itemCount)
+    fun addNewItem(itemName: String, itemDate: String, itemContent: String) {
+        val newItem = getNewItemEntry(itemName, itemDate, itemContent)
         insertItem(newItem)
     }
 
@@ -118,8 +118,8 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
     /**
      * Returns true if the EditTexts are not empty
      */
-    fun isEntryValid(itemName: String, itemDate: String, itemCount: String): Boolean {
-        if (itemName.isBlank() || itemDate.isBlank() || itemCount.isBlank()) {
+    fun isEntryValid(itemName: String, itemDate: String, itemContent: String): Boolean {
+        if (itemName.isBlank() || itemDate.isBlank() || itemContent.isBlank()) {
             return false
         }
         return true
@@ -129,11 +129,11 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
      * Returns an instance of the [Item] entity class with the item info entered by the user.
      * This will be used to add a new entry to the Inventory database.
      */
-    private fun getNewItemEntry(itemTitle: String, itemDate: String, itemCount: String): Item {
+    private fun getNewItemEntry(itemTitle: String, itemDate: String, itemContent: String): Item {
         return Item(
             itemTitle = itemTitle,
-            itemDate = itemDate,
-            quantityInStock = itemCount.toInt()
+            itemDate = itemDate
+//            quantityInStock = itemContent.toInt()
         )
     }
 
@@ -145,13 +145,13 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
         itemId: Int,
         itemName: String,
         itemDate: String,
-        itemCount: String
+        itemContent: String
     ): Item {
         return Item(
             id = itemId,
             itemName = itemName,
-            itemDate = itemDate.toDouble(),
-            quantityInStock = itemCount.toInt()
+            itemDate = itemDate,
+//            quantityInStock = itemContent.toInt()
         )
     }
 }

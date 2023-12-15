@@ -25,7 +25,7 @@
         android:layout_margin="@dimen/margin">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/item_name_label"
+            android:id="@+id/item_title_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin"
@@ -35,7 +35,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/item_name"
+                android:id="@+id/item_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textAutoComplete|textCapWords"
@@ -43,18 +43,18 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/item_price_label"
+            android:id="@+id/item_date_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin"
-            android:hint="@string/item_price_req"
+            android:hint="날짜"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_name_label"
+            app:layout_constraintTop_toBottomOf="@+id/item_title_label"
             app:prefixText="@string/currency_symbol">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/item_price"
+                android:id="@+id/item_date"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="numberDecimal"
@@ -62,7 +62,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/item_count_label"
+            android:id="@+id/item_content_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin"
@@ -70,10 +70,10 @@
             app:layout_constraintBottom_toTopOf="@+id/save_action"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_price_label">
+            app:layout_constraintTop_toBottomOf="@+id/item_date_label">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/item_count"
+                android:id="@+id/item_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="number"
@@ -88,7 +88,7 @@
             android:text="@string/save_action"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_count_label" />
+            app:layout_constraintTop_toBottomOf="@+id/item_content_label" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -66,9 +66,9 @@ class AddItemFragment : Fragment() {
      */
     private fun isEntryValid(): Boolean {
         return viewModel.isEntryValid(
-            binding.itemName.text.toString(),
-            binding.itemPrice.text.toString(),
-            binding.itemCount.text.toString(),
+            binding.itemTitle.text.toString(),
+            binding.itemDate.text.toString(),
+            binding.itemContent.text.toString(),
         )
     }
 
@@ -76,11 +76,11 @@ class AddItemFragment : Fragment() {
      * Binds views with the passed in [item] information.
      */
     private fun bind(item: Item) {
-        val price = "%.2f".format(item.itemPrice)
+//        val price = "%.2f".format(item.itemDate)
         binding.apply {
-            itemName.setText(item.itemName, TextView.BufferType.SPANNABLE)
-            itemPrice.setText(price, TextView.BufferType.SPANNABLE)
-            itemCount.setText(item.quantityInStock.toString(), TextView.BufferType.SPANNABLE)
+            itemTitle.setText(item.title, TextView.BufferType.SPANNABLE)
+            itemDate.setText(item.date, TextView.BufferType.SPANNABLE)
+            itemContent.setText(item.content, TextView.BufferType.SPANNABLE)
             saveAction.setOnClickListener { updateItem() }
         }
     }
@@ -91,9 +91,9 @@ class AddItemFragment : Fragment() {
     private fun addNewItem() {
         if (isEntryValid()) {
             viewModel.addNewItem(
-                binding.itemName.text.toString(),
-                binding.itemPrice.text.toString(),
-                binding.itemCount.text.toString(),
+                binding.itemTitle.text.toString(),
+                binding.itemDate.text.toString(),
+                binding.itemContent.text.toString(),
             )
             val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
             findNavController().navigate(action)
@@ -107,9 +107,9 @@ class AddItemFragment : Fragment() {
         if (isEntryValid()) {
             viewModel.updateItem(
                 this.navigationArgs.itemId,
-                this.binding.itemName.text.toString(),
-                this.binding.itemPrice.text.toString(),
-                this.binding.itemCount.text.toString()
+                this.binding.itemTitle.text.toString(),
+                this.binding.itemDate.text.toString(),
+                this.binding.itemContent.text.toString()
             )
             val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
             findNavController().navigate(action)
