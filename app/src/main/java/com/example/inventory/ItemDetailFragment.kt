@@ -25,6 +25,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.inventory.data.Item
+import com.example.inventory.data.ItemDao_Impl
 import com.example.inventory.data.getFormattedPrice
 import com.example.inventory.databinding.FragmentItemDetailBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -59,11 +60,11 @@ class ItemDetailFragment : Fragment() {
      */
     private fun bind(item: Item) {
         binding.apply {
-            itemName.text = item.itemName
-            itemPrice.text = item.getFormattedPrice()
-            itemCount.text = item.quantityInStock.toString()
+            itemTitle.text = item.title
+            itemDate.text = item.date
+            itemContent.text = item.content.toString()
             sellItem.isEnabled = viewModel.isStockAvailable(item)
-            sellItem.setOnClickListener { viewModel.sellItem(item) }
+            sellItem.setOnClickListener { viewModel.modify(item) }
             deleteItem.setOnClickListener { showConfirmationDialog() }
             editItem.setOnClickListener { editItem() }
         }
